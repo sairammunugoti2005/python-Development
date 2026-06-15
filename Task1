@@ -1,0 +1,94 @@
+Sample Dataset (Assume CSV)
+Let’s assume a CSV file sales_data.csv like this:
+Product
+Sales
+Profit
+Advertising
+A
+200
+50
+20
+B
+300
+80
+30
+C
+60
+25
+D
+E
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load CSV file
+df = pd.read_csv("sales_data.csv")
+
+# Display first rows
+print(df.head())
+
+# Basic Analysis
+avg_sales = df['Sales'].mean()
+avg_profit = df['Profit'].mean()
+
+print("Average Sales:", avg_sales)
+print("Average Profit:", avg_profit)
+
+# -------------------------------
+# BAR CHART (Sales by Product)
+# -------------------------------
+plt.figure()
+plt.bar(df['Product'], df['Sales'])
+plt.title("Sales by Product")
+plt.xlabel("Product")
+plt.ylabel("Sales")
+plt.show()
+
+# -------------------------------
+# SCATTER PLOT (Advertising vs Sales)
+# -------------------------------
+plt.figure()
+plt.scatter(df['Advertising'], df['Sales'])
+plt.title("Advertising vs Sales")
+plt.xlabel("Advertising")
+plt.ylabel("Sales")
+plt.show()
+
+# -------------------------------
+# HEATMAP (Correlation)
+# -------------------------------
+plt.figure()
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm')
+plt.title("Correlation Heatmap")
+plt.show()
+250
+400
+100
+40
+150
+30
+15
+🧑‍💻 2. Python Code (Pandas + Matplotlib)
+Python
+📊 3. Example Visualization (Bar Chart)
+🔍 4. Insights & Observations
+📌 1. Average Values
+Average Sales = 260
+Average Profit = 64 👉 Products above average: B, C, D
+📌 2. Bar Chart Insights
+Product D has the highest sales.
+Product E has the lowest performance. 👉 Focus marketing on low-performing products.
+📌 3. Scatter Plot Insights
+Shows relationship between Advertising & Sales
+Positive trend → More advertising = more sales
+👉 Suggests marketing budget is effective.
+📌 4. Heatmap Insights
+Strong correlation between:
+Sales & Profit
+Advertising & Sales 👉 Indicates:
+Increasing ads likely increases both sales and profit.
+✅ Final Conclusion
+Product D is the top performer.
+Advertising plays a key role in boosting sales.
+Some products (like E) need improvement strategies.
+Data shows a strong business growth pattern with marketing investment.
