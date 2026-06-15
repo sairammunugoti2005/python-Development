@@ -1,0 +1,95 @@
+1. Dataset Selection (Kaggle)
+A commonly used dataset:
+House Prices – Advanced Regression Techniques (Kaggle)
+👉 Contains features like:
+Number of rooms
+Size (area)
+Location-related features
+Year built
+Garage, etc.
+You can download it from Kaggle and use the file:
+
+train.csv
+📥 2. Import Libraries
+Python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+📊 3. Load Dataset
+Python
+df = pd.read_csv("train.csv")
+
+print(df.head())
+print(df.info())
+🧹 4. Data Preprocessing
+✔ Handle Missing Values
+Python
+df = df.dropna()  # simple approach (or use fillna)
+✔ Select Important Features
+Python
+features = ['GrLivArea', 'BedroomAbvGr', 'FullBath']  # size, rooms, bathrooms
+target = 'SalePrice'
+
+X = df[features]
+y = df[target]
+✔ Train-Test Split
+Python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+🤖 5. Train Linear Regression Model
+Python
+model = LinearRegression()
+model.fit(X_train, y_train)
+🔮 6. Predictions
+Python
+y_pred = model.predict(X_test)
+📏 7. Model Evaluation
+Python
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print("MAE:", mae)
+print("MSE:", mse)
+print("R2 Score:", r2)
+📈 8. Visualization (Actual vs Predicted)
+🔍 9. Insights & Observations
+📌 Model Performance
+R² Score ~ 0.7–0.9 (good fit if achieved)
+Low MAE → predictions close to actual prices
+📌 Feature Impact
+GrLivArea (size) → strongest influence on price
+More rooms & bathrooms → higher price
+📌 Patterns
+Larger houses → higher prices
+Model may struggle with:
+Location-based variations
+Luxury or outlier properties
+⚡ 10. Improvements (Important)
+To make your model more accurate, you can:
+✅ Add More Features
+Python
+features = ['GrLivArea', 'OverallQual', 'GarageCars', 'TotalBsmtSF']
+✅ Handle Categorical Data
+Python
+df = pd.get_dummies(df)
+✅ Normalize Data
+Python
+from sklearn.preprocessing import StandardScaler
+✅ Try Advanced Models
+Random Forest 🌲
+XGBoost 🚀
+Gradient Boosting
+✅ Final Conclusion
+Linear Regression provides a simple and interpretable model
+Works well for basic price prediction
+Accuracy improves with:
+Better features
+Proper preprocessing
+Advanced models
