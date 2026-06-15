@@ -1,0 +1,110 @@
+import numpy as np
+
+# Function to input matrix
+def input_matrix(name):
+    rows = int(input(f"Enter number of rows for {name}: "))
+    cols = int(input(f"Enter number of columns for {name}: "))
+    
+    print(f"Enter elements of {name} row-wise:")
+    matrix = []
+    
+    for i in range(rows):
+        row = list(map(float, input().split()))
+        matrix.append(row)
+    
+    return np.array(matrix)
+
+# Function to display matrix neatly
+def display_matrix(matrix, title="Result"):
+    print(f"\n{title}:")
+    print(matrix)
+    print("-" * 30)
+
+# Main menu
+def matrix_tool():
+    while True:
+        print("\n===== MATRIX OPERATIONS TOOL =====")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Transpose")
+        print("5. Determinant")
+        print("6. Exit")
+        
+        choice = int(input("Enter your choice: "))
+        
+        if choice == 1:
+            A = input_matrix("Matrix A")
+            B = input_matrix("Matrix B")
+            try:
+                result = A + B
+                display_matrix(result, "Addition Result")
+            except:
+                print("❌ Error: Matrices must have same dimensions!")
+
+        elif choice == 2:
+            A = input_matrix("Matrix A")
+            B = input_matrix("Matrix B")
+            try:
+                result = A - B
+                display_matrix(result, "Subtraction Result")
+            except:
+                print("❌ Error: Matrices must have same dimensions!")
+
+        elif choice == 3:
+            A = input_matrix("Matrix A")
+            B = input_matrix("Matrix B")
+            try:
+                result = np.dot(A, B)
+                display_matrix(result, "Multiplication Result")
+            except:
+                print("❌ Error: Columns of A must equal rows of B!")
+
+        elif choice == 4:
+            A = input_matrix("Matrix")
+            result = A.T
+            display_matrix(result, "Transpose Result")
+
+        elif choice == 5:
+            A = input_matrix("Matrix")
+            try:
+                result = np.linalg.det(A)
+                print("\nDeterminant:", result)
+            except:
+                print("❌ Error: Determinant requires a square matrix!")
+
+        elif choice == 6:
+            print("Exiting... Thank you!")
+            break
+
+        else:
+            print("❌ Invalid choice! Try again.")
+
+# Run the tool
+matrix_tool()
+===== MATRIX OPERATIONS TOOL =====
+1. Addition
+2. Subtraction
+3. Multiplication
+4. Transpose
+5. Determinant
+6. Exit
+
+Enter your choice: 1
+
+Enter number of rows for Matrix A: 2
+Enter number of columns for Matrix A: 2
+Enter elements:
+1 2
+3 4
+
+Enter number of rows for Matrix B: 2
+Enter number of columns for Matrix B: 2
+Enter elements:
+5 6
+7 8
+
+Addition Result:
+[[ 6.  8.]
+ [10. 12.]]
+print(np.array_str(matrix, precision=2, suppress_small=True))
